@@ -1,0 +1,30 @@
+This is a base tornado framework derived from the way bit.ly use to use Tornado.
+
+Running:
+
+python tornado_server.py --environment=dev
+
+Notes:
+
+1. All configuration should occur within the settings.py file (with a few minor exceptions such as cookie_secret which are defined in tornado_server.py)
+
+2. All endpoints are defined in torando_server.py
+
+3. All business logic should be defined in files in the app directory and all libraries should be defined in the lib directory.
+
+4. The scripts folder is intended to be used for any support scripts that are not directly used by the tornado instance (such as setup or deamonizing)
+
+5. The default environment is dev, so you do not need to specify the command line environment switch if you are going to run a dev version
+
+6. You can also specify the port to run with the --port=8002 option (where 8002 is the port of your choice). The default port used is 8001.
+
+
+Out of the box:
+
+1. You can communicate with Mongo instances (see the test_connection endpoint for examples).
+  A. You will need to make sure pymongo is installed AND that you are running an instance of mongo that your settings.py defines
+
+2. You can use self.api_response() and it will return/render JSON
+  A. if a callback is specified it will return Content-Type of javascript, if a callback is not specified it will return Content-Type of json
+
+

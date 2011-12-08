@@ -16,7 +16,7 @@ class BaseHandler(tornado.web.RequestHandler):
     self.write_api_response(status_code=status_code, status_txt=status_txt, data=data)
 
   def write_api_response(self, data, status_code, status_txt):
-    # return an api error based on the appropriate request format (ie: json/xml)
+    # return an api error based on the appropriate request format (ie: json)
     format = self.get_argument('format', 'json')
     callback = self.get_argument('callback', None)
     if format not in ["json"]:

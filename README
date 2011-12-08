@@ -1,4 +1,4 @@
-This is a base tornado framework derived from the way bit.ly use to use Tornado.
+This is a base Python tornado framework implementation.
 
 Running:
 

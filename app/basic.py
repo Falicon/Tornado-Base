@@ -5,7 +5,7 @@ import simplejson as json
 class BaseHandler(tornado.web.RequestHandler):
 
   def get_current_user(self):
-    return self.get_secure_cookie("character")
+    return self.get_secure_cookie("account")
 
   def api_response(self, data):
     # return an api response in the proper output format with status_code == 200

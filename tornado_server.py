@@ -19,7 +19,7 @@ class Application(tornado.web.Application):
     debug = (tornado.options.options.environment == "dev")
 
     app_settings = {
-      "cookie_secret" : "",
+      "cookie_secret" : "change_me",
       "login_url": "/",
       "debug": debug,
       "static_path" : os.path.join(os.path.dirname(__file__), "static"),

@@ -6,12 +6,12 @@
   <meta name="keywords" content="{% block meta_keywords %}{% end %}" />
   <meta name="description" content="{% block meta_description %}{% end %}" />
   <link rel="stylesheet" href="{{static_url("css/bootstrap.min.css")}}" type="text/css" charset="utf-8" />
-  <script type="text/javascript" src="{{static_url("js/jquery-1.7.min.js")}}"></script>
 </head>
 <body topmargin="0" rightmargin="0" leftmargin="0">
   <div class="container-fluid">
     {% block middle_content %}{% end %}
     {% block javascript %}{% end %}
   </div>
+  <script type="text/javascript" src="{{static_url("js/jquery-1.9.1.js")}}"></script>
 </body>
 </html>

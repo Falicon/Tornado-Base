@@ -1,17 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
   <title>{% block title %}{% end %}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="{% block meta_keywords %}{% end %}" />
   <meta name="description" content="{% block meta_description %}{% end %}" />
   <link rel="stylesheet" href="{{static_url("css/bootstrap.min.css")}}" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="{{static_url("css/bootstrap-responsive.min.css")}}" type="text/css" charset="utf-8" />
+  {% block header_styles %}{% end %}
 </head>
-<body topmargin="0" rightmargin="0" leftmargin="0">
-  <div class="container-fluid">
+<body>
+  <div class="container">
     {% block middle_content %}{% end %}
-    {% block javascript %}{% end %}
   </div>
-  <script type="text/javascript" src="{{static_url("js/jquery-1.9.1.js")}}"></script>
+  <script type="text/javascript" src="{{static_url("js/jquery.min.js")}}"></script>
+  <script type="text/javascript" src="{{static_url("js/bootstrap.min.js")}}"></script>
+  {% block javascript %}{% end %}
 </body>
 </html>

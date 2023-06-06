@@ -1,16 +1,38 @@
+import os
 import tornado.options
 
 tornado.options.define("environment", default="dev", help="environment")
 
 options = {
   'dev' : {
-    'mongo_database' : {'host' : 'localhost', 'port' : 27017, 'db' : 'dev'},
+    'mongo_database' : {
+      'host' : os.environ['MONGO_HOST'].strip(),
+      'port' : os.environ['MONGO_PORT'].strip(),
+      'db' : os.environ['MONGO_DB'].strip(),
+      'username': os.environ['MONGO_USERNAME'].strip(),
+      'password': os.environ['MONGO_PASSWORD'].strip(),
+      'directConnection': os.environ['MONGO_DIRECT_CONNECTION'].strip()
+    },
   },
   'test' : {
-    'mongo_database' : {'host' : '', 'port' : 27017, 'db' : ''},
+    'mongo_database' : {
+      'host' : os.environ['MONGO_HOST'].strip(),
+      'port' : os.environ['MONGO_PORT'].strip(),
+      'db' : os.environ['MONGO_DB'].strip(),
+      'username': os.environ['MONGO_USERNAME'].strip(),
+      'password': os.environ['MONGO_PASSWORD'].strip(),
+      'directConnection': os.environ['MONGO_DIRECT_CONNECTION'].strip()
+    },
   },
   'prod' : {
-    'mongo_database' : {'host' : '', 'port' : 27017, 'db' : ''},
+    'mongo_database' : {
+      'host' : os.environ['MONGO_HOST'].strip(),
+      'port' : os.environ['MONGO_PORT'].strip(),
+      'db' : os.environ['MONGO_DB'].strip(),
+      'username': os.environ['MONGO_USERNAME'].strip(),
+      'password': os.environ['MONGO_PASSWORD'].strip(),
+      'directConnection': os.environ['MONGO_DIRECT_CONNECTION'].strip()
+    },
   }
 }
 

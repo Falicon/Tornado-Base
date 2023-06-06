@@ -1,30 +1,44 @@
 This is a base Python tornado framework implementation.
 
-Running:
+Running (with environment variables):
 
-python tornado_server.py --environment=dev
+MONGO_USERNAME=falicon MONGO_PASSWORD=sYJGGnHqEmmF8nJJkMPyMjRp MONGO_HOST=127.0.0.1 MONGO_PORT=27017 MONGO_DB=halfbite MONGO_DIRECT_CONNECTION=true COOKIE_SECRET=boggle python3 tornado_server.py --environment=dev
 
 Notes:
 
-1. All configuration should occur within the settings.py file (with a few minor exceptions such as cookie_secret which are defined in tornado_server.py)
+1. All configuration should occur within ENVIRONMENT variables and/or the settings.py file
 
 2. All endpoints are defined in torando_server.py
 
-3. All business logic should be defined in files in the app directory and all libraries should be defined in the lib directory.
+3. This is a basic Model/View/Controller setup (MVC).
+    - All data/database functions should be defined in the models directory (M)
 
-4. The scripts folder is intended to be used for any support scripts that are not directly used by the tornado instance (such as setup or deamonizing)
+    - All html files should be defined in the views directory (V)
 
-5. The default environment is dev, so you do not need to specify the command line environment switch if you are going to run a dev version
+    - All business logic should be defined in files in the controllers directory (C)
 
-6. You can also specify the port to run with the --port=8002 option (where 8002 is the port of your choice). The default port used is 8001.
+    - Images, external JS, and external CSS files should be defined in the static folder
 
+      - you can reference static files via a {{static_url('')}} snippet within your views (this will be relative to your static folder, so for example if you have a file like /static/css/test.css you could include a <link rel="stylesheet" href="{{static_url('css/test.css')}}" type="text/css" /> tag in your base.html file within your views folder to apply that stylesheet to every page that extends base.html).
+
+      - ideally you'll configure your webserver to know your static folder location (so that your nginx, apache, or other webserver can deal with rendering things like images, css, and external js directly [this is faster than relying on the python server to do so])
+
+      - NOTE: no external images, css, or javascript files have been used or included in this base project.
+
+4. The default environment is dev, so you do not need to specify the command line environment switch if you are going to run a dev version
+
+5. You can also specify the port to run with the --port=8002 option (where 8002 is the port of your choice). The default port used is 8001.
+
+6. For more information about all the built in features and function of the Tornado framework please see https://tornadoweb.org/en/stable/
 
 Out of the box:
 
 1. You can communicate with Mongo instances (see the test_connection endpoint for examples).
-  A. You will need to make sure pymongo is installed AND that you are running an instance of mongo that your settings.py defines
 
-2. You can use self.api_response() and it will return/render JSON
-  A. if a callback is specified it will return Content-Type of javascript, if a callback is not specified it will return Content-Type of json
+A. You will need to make sure pymongo is installed AND that you are running an instance of mongo that your ENVIRONMENT variables define
+
+2. You can use self.api_response() and it will return/render JSON (api_response along with a few other helper methods are defined in the controllers/basic.py file)
+
+A. if a callback is specified it will return Content-Type of javascript, if a callback is not specified it will return Content-Type of json
 
 

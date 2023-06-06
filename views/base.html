@@ -6,16 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="{% block meta_keywords %}{% end %}" />
   <meta name="description" content="{% block meta_description %}{% end %}" />
-  <link rel="stylesheet" href="{{static_url("css/bootstrap.min.css")}}" type="text/css" charset="utf-8" />
-  <link rel="stylesheet" href="{{static_url("css/bootstrap-responsive.min.css")}}" type="text/css" charset="utf-8" />
   {% block header_styles %}{% end %}
 </head>
 <body>
   <div class="container">
     {% block middle_content %}{% end %}
   </div>
-  <script type="text/javascript" src="{{static_url("js/jquery.min.js")}}"></script>
-  <script type="text/javascript" src="{{static_url("js/bootstrap.min.js")}}"></script>
   {% block javascript %}{% end %}
 </body>
 </html>

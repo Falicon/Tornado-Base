@@ -10,8 +10,8 @@ import logging
 # settings is required/used to set our environment
 import settings 
 
-import app.basic
-import app.general
+import controllers.basic
+import controllers.general
 
 class Application(tornado.web.Application):
   def __init__(self):
@@ -19,19 +19,21 @@ class Application(tornado.web.Application):
     debug = (tornado.options.options.environment == "dev")
 
     app_settings = {
-      "cookie_secret" : "change_me",
+      "cookie_secret" : os.environ['COOKIE_SECRET'].strip(),
       "login_url": "/",
       "debug": debug,
       "static_path" : os.path.join(os.path.dirname(__file__), "static"),
-      "template_path" : os.path.join(os.path.dirname(__file__), "templates"),
+      "template_path" : os.path.join(os.path.dirname(__file__), "views"),
     }
 
     """
     the endpoints this torando instance provides
+      1. this is a drop through list (first thing it matches is the path it will take)
+      2. supports regular expressions (so the last line essentially catches any/all requests to this application and rountes the user to the not found controller)
     """
     handlers = [
-      (r"/test/mongo", app.general.TestMongo),
-      (r".+", app.general.NotFound),
+      (r"/test/mongo", controllers.general.TestMongo),
+      (r".+", controllers.general.NotFound),
     ]
 
     tornado.web.Application.__init__(self, handlers, **app_settings)
